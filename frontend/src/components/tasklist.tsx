@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { FaBullseye, FaRegCircleCheck , FaRegCircle, FaRegCircleDot  } from "react-icons/fa6";
+import { FaBullseye, FaRegCircleCheck , FaRegCircle  } from "react-icons/fa6";
 import { IconType } from 'react-icons';
 import axios from 'axios';
 import Task from './task';

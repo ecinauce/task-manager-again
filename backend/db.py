@@ -1,13 +1,24 @@
-
+import os
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from model_task import Task
 from bson import ObjectId
+from dotenv import load_dotenv
+import certifi
 
-uri = "mongodb+srv://ennchan:EnnchanTestAdmin1@cluster0.vapyrs1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+# Load environment variables from .env file
+load_dotenv()
 
-# Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
+# Get MongoDB URI from environment variable or use a default for development
+uri = os.environ.get("MONGODB_URI", "mongodb://localhost:27017/taskmanager")
+
+# Create a new client with proper SSL configuration
+# Using certifi to provide the CA certificate bundle
+client = MongoClient(
+    uri,
+    server_api=ServerApi('1'),
+    tlsCAFile=certifi.where()
+)
 
 # # Send a ping to confirm a successful connection
 # try:
